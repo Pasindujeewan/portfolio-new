@@ -70,27 +70,33 @@ export function BlogsSection({ blogs }: { blogs: BlogPost[] }) {
         <SectionHeading
           eyebrow="Blogs"
           title="Notes from the engineering journey"
-          description="Sample writing topics around React, Next.js, UI/UX, software engineering, and cloud development."
+          description="Writing topics around React, Next.js, UI/UX, software engineering, and cloud development."
         />
-        <div className="relative">
-          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-10 bg-gradient-to-r from-slate-50 to-transparent dark:from-night" />
-          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-10 bg-gradient-to-l from-slate-50 to-transparent dark:from-night" />
-          <div
-            ref={scrollerRef}
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-            onTouchStart={() => setPaused(true)}
-            onTouchEnd={() => setPaused(false)}
-            onFocus={() => setPaused(true)}
-            onBlur={() => setPaused(false)}
-            className="-mx-5 flex gap-5 overflow-x-auto px-5 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            aria-label="Auto scrolling blog posts"
-          >
-            {loopBlogs.map((blog, index) => (
-              <BlogCard key={`${blog.id}-${index}`} blog={blog} />
-            ))}
+        {blogs.length === 0 ? (
+          <div className="glass rounded-3xl p-6 text-center text-slate-600 shadow-lg dark:text-slate-300">
+            Blog posts will appear here soon.
           </div>
-        </div>
+        ) : (
+          <div className="relative">
+            <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-10 bg-gradient-to-r from-slate-50 to-transparent dark:from-night" />
+            <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-10 bg-gradient-to-l from-slate-50 to-transparent dark:from-night" />
+            <div
+              ref={scrollerRef}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+              onTouchStart={() => setPaused(true)}
+              onTouchEnd={() => setPaused(false)}
+              onFocus={() => setPaused(true)}
+              onBlur={() => setPaused(false)}
+              className="-mx-5 flex gap-5 overflow-x-auto px-5 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              aria-label="Auto scrolling blog posts"
+            >
+              {loopBlogs.map((blog, index) => (
+                <BlogCard key={`${blog.id}-${index}`} blog={blog} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </MotionSection>
   );

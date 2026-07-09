@@ -9,7 +9,7 @@ Currently exploring full stack development, React, MERN stack, React Native/Expo
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Pasindu%20Jeewan-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pasindu-jeewan-b4934524b)
 [![LeetCode](https://img.shields.io/badge/LeetCode-PasinduJeewan-FFA116?style=for-the-badge&logo=leetcode&logoColor=black)](https://leetcode.com/u/PasinduJeewan/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20Website-00B8A9?style=for-the-badge&logo=vercel&logoColor=white)](#)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20Website-00B8A9?style=for-the-badge&logo=vercel&logoColor=white)](https://github.com/Pasindujeewana1)
 
 </div>
 
@@ -90,7 +90,7 @@ Currently exploring full stack development, React, MERN stack, React Native/Expo
 - GitHub: [Pasindujeewana1](https://github.com/Pasindujeewana1)
 - LinkedIn: [Pasindu Jeewan](https://www.linkedin.com/in/pasindu-jeewan-b4934524b)
 - LeetCode: [PasinduJeewan](https://leetcode.com/u/PasinduJeewan/)
-- Portfolio: Coming soon
+- Portfolio: [Pasindu Portfolio](https://github.com/Pasindujeewana1)
 
 ---
 

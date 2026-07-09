@@ -1,8 +1,10 @@
 node_modules
 .next
 out
+data/db.json
 .env*.local
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+.vercel

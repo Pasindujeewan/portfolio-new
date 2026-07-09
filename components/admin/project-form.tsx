@@ -26,8 +26,8 @@ export function ProjectForm({ project }: { project?: Project }) {
         <Field label="Title" name="title" defaultValue={project?.title} />
         <Field label="Icon" name="icon" defaultValue={project?.icon ?? "MonitorSmartphone"} />
         <Field label="Tech stack, comma separated" name="stack" defaultValue={project?.stack.join(", ")} />
-        <Field label="GitHub URL" name="github" type="url" defaultValue={project?.github ?? "https://github.com/"} />
-        <Field label="Live demo URL" name="demo" type="url" defaultValue={project?.demo ?? "https://example.com"} />
+        <Field label="GitHub URL" name="github" type="url" defaultValue={project?.github ?? "https://github.com/Pasindujeewana1"} />
+        <Field label="Live demo URL" name="demo" type="url" defaultValue={project?.demo ?? "https://github.com/Pasindujeewana1"} />
         <div className="md:col-span-2">
           <TextArea label="Description" name="description" defaultValue={project?.description} />
         </div>

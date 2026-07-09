@@ -68,9 +68,9 @@ export function HomeSection() {
             transition={{ delay: 0.45 }}
           >
             {[
-              { icon: Github, href: "https://github.com/", label: "GitHub" },
-              { icon: Linkedin, href: "https://www.linkedin.com/", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:pasindu@example.com", label: "Email" }
+              { icon: Github, href: "https://github.com/Pasindujeewana1", label: "GitHub" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/pasindu-jeewan-b4934524b", label: "LinkedIn" },
+              { icon: Mail, href: "mailto:pasindujeewan7@gmail.com", label: "Email" }
             ].map((item) => {
               const Icon = item.icon;
               return (

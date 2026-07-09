@@ -26,9 +26,9 @@ export function ContactSection() {
             </p>
             <div className="mt-7 space-y-3">
               {[
-                { icon: Mail, label: "pasindu@example.com", href: "mailto:pasindu@example.com" },
-                { icon: Github, label: "GitHub", href: "https://github.com/" },
-                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/" },
+                { icon: Mail, label: "pasindujeewan7@gmail.com", href: "mailto:pasindujeewan7@gmail.com" },
+                { icon: Github, label: "GitHub", href: "https://github.com/Pasindujeewana1" },
+                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/pasindu-jeewan-b4934524b" },
                 { icon: MapPin, label: "Sri Lanka", href: "#home" }
               ].map((item) => {
                 const Icon = item.icon;

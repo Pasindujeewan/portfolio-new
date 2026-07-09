@@ -23,6 +23,11 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
           title="Selected work and product experiments"
           description="A mix of academic tools, LMS ideas, mobile apps, portfolio systems, and cloud-based experiences that reflect my current engineering path."
         />
+        {projects.length === 0 ? (
+          <div className="glass rounded-3xl p-6 text-center text-slate-600 shadow-lg dark:text-slate-300">
+            Projects will appear here soon.
+          </div>
+        ) : null}
         <div className="grid gap-5 md:grid-cols-2">
           {visibleProjects.map((project, index) => {
             const Icon = iconMap[project.icon as keyof typeof iconMap] ?? MonitorSmartphone;
