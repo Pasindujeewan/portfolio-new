@@ -1,7 +1,21 @@
-import { ArrowRight, Github, Linkedin, Mail, Sparkles, Terminal } from "lucide-react";
+import {
+  ArrowRight,
+  Github,
+  Linkedin,
+  Mail,
+  Sparkles,
+  Terminal,
+} from "lucide-react";
 import { MotionDiv, MotionSection } from "@/components/motion";
 
-const words = ["Full Stack Development", "React", "MERN Stack", "React Native", "UI/UX", "DevOps"];
+const words = [
+  "Full-Stack Engineering",
+  "Cloud Applications",
+  "Mobile Development",
+  "System Design",
+  "DevOps",
+  "AI Integration",
+];
 
 export function HomeSection() {
   return (
@@ -22,14 +36,20 @@ export function HomeSection() {
             className="mx-auto mb-5 inline-flex max-w-[20rem] items-center justify-center gap-2 rounded-full border border-aqua/30 bg-aqua/10 px-4 py-2 text-center text-xs font-semibold text-aqua sm:max-w-none sm:text-sm lg:mx-0"
           >
             <Sparkles size={16} className="shrink-0" />
-            <span>BICT undergraduate building useful digital products</span>
+            <span>Turning Ideas into Useful Digital Products</span>
           </MotionDiv>
-          <MotionDiv initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+          <MotionDiv
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
             <h1 className="mx-auto max-w-4xl text-4xl font-black leading-tight text-slate-950 dark:text-white sm:text-5xl md:text-7xl lg:mx-0">
               Pasindu Jeewan
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300 md:text-xl lg:mx-0">
-              I design and build web, mobile, LMS, analyzer, portfolio, and cloud-based apps with a strong focus on clean UX and reliable engineering.
+              I design and build modern web, mobile, cloud, and enterprise
+              applications with a strong focus on intuitive user experiences,
+              clean architecture, and reliable engineering
             </p>
           </MotionDiv>
           <MotionDiv
@@ -54,10 +74,16 @@ export function HomeSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <a href="#projects" className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3 font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-aqua dark:bg-white dark:text-slate-950">
+            <a
+              href="#projects"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3 font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-aqua dark:bg-white dark:text-slate-950"
+            >
               View Projects <ArrowRight size={18} />
             </a>
-            <a href="#contact" className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/70 px-6 py-3 font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-coral hover:text-coral dark:border-white/10 dark:bg-white/10 dark:text-white">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/70 px-6 py-3 font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-coral hover:text-coral dark:border-white/10 dark:bg-white/10 dark:text-white"
+            >
               Contact Me
             </a>
           </MotionDiv>
@@ -68,13 +94,30 @@ export function HomeSection() {
             transition={{ delay: 0.45 }}
           >
             {[
-              { icon: Github, href: "https://github.com/Pasindujeewana1", label: "GitHub" },
-              { icon: Linkedin, href: "https://www.linkedin.com/in/pasindu-jeewan-b4934524b", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:pasindujeewan7@gmail.com", label: "Email" }
+              {
+                icon: Github,
+                href: "https://github.com/Pasindujeewan",
+                label: "GitHub",
+              },
+              {
+                icon: Linkedin,
+                href: "https://www.linkedin.com/in/pasindu-jeewan-b4934524b",
+                label: "LinkedIn",
+              },
+              {
+                icon: Mail,
+                href: "mailto:pasindujeewan7@gmail.com",
+                label: "Email",
+              },
             ].map((item) => {
               const Icon = item.icon;
               return (
-                <a key={item.label} href={item.href} aria-label={item.label} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white/75 text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:text-aqua dark:border-white/10 dark:bg-white/10 dark:text-slate-200">
+                <a
+                  key={item.label}
+                  href={item.href}
+                  aria-label={item.label}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white/75 text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:text-aqua dark:border-white/10 dark:bg-white/10 dark:text-slate-200"
+                >
                   <Icon size={19} />
                 </a>
               );
@@ -96,12 +139,17 @@ export function HomeSection() {
             <div className="space-y-4 overflow-x-auto text-left font-mono text-xs sm:text-sm">
               <p className="text-aqua">const developer = &#123;</p>
               <p className="pl-4">name: &quot;Pasindu Jeewan&quot;,</p>
-              <p className="pl-4">focus: [&quot;React&quot;, &quot;MERN&quot;, &quot;Expo&quot;],</p>
+              <p className="pl-4">
+                focus: [&quot;Think&quot;,
+                &quot;Design&quot;,&quot;develop&quot;, &quot;Ship&quot;],
+              </p>
               <p className="pl-4">mindset: &quot;learn, build, improve&quot;</p>
               <p className="text-aqua">&#125;;</p>
               <div className="flex items-center gap-2 rounded-xl bg-white/10 p-3">
                 <Terminal size={18} className="shrink-0 text-citrus" />
-                <span className="min-w-0 whitespace-normal">shipping clean software experiences</span>
+                <span className="min-w-0 whitespace-normal">
+                  shipping clean software experiences
+                </span>
               </div>
             </div>
           </div>

@@ -20,16 +20,32 @@ export function ContactSection() {
             viewport={{ once: true, amount: 0.3 }}
             className="glass rounded-3xl p-6 shadow-lg"
           >
-            <h3 className="text-2xl font-bold text-slate-950 dark:text-white">Connect with me</h3>
+            <h3 className="text-2xl font-bold text-slate-950 dark:text-white">
+              Connect with me
+            </h3>
             <p className="mt-3 leading-7 text-slate-600 dark:text-slate-300">
-              Send a message about your idea, role, project, or technical problem. I enjoy the places where design decisions and engineering details meet.
+              Send a message about your idea, role, project, or technical
+              problem. I enjoy the places where design decisions and engineering
+              details meet.
             </p>
             <div className="mt-7 space-y-3">
               {[
-                { icon: Mail, label: "pasindujeewan7@gmail.com", href: "mailto:pasindujeewan7@gmail.com" },
-                { icon: Github, label: "GitHub", href: "https://github.com/Pasindujeewana1" },
-                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/pasindu-jeewan-b4934524b" },
-                { icon: MapPin, label: "Sri Lanka", href: "#home" }
+                {
+                  icon: Mail,
+                  label: "pasindujeewan7@gmail.com",
+                  href: "mailto:pasindujeewan7@gmail.com",
+                },
+                {
+                  icon: Github,
+                  label: "GitHub",
+                  href: "https://github.com/Pasindujeewan",
+                },
+                {
+                  icon: Linkedin,
+                  label: "LinkedIn",
+                  href: "https://www.linkedin.com/in/pasindu-jeewan-b4934524b",
+                },
+                { icon: MapPin, label: "Sri Lanka", href: "#home" },
               ].map((item) => {
                 const Icon = item.icon;
                 return (
@@ -45,13 +61,23 @@ export function ContactSection() {
               })}
             </div>
           </MotionDiv>
-          <MotionDiv initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}>
+          <MotionDiv
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <ContactForm />
           </MotionDiv>
         </div>
         <footer className="mt-16 flex flex-col items-center justify-between gap-3 border-t border-slate-200 pt-8 text-center text-sm text-slate-500 dark:border-white/10 dark:text-slate-400 md:flex-row md:text-left">
-          <p>&copy; {new Date().getFullYear()} Pasindu Jeewan. All rights reserved.</p>
-          <Link href="/admin/login" className="font-semibold transition hover:text-aqua">
+          <p>
+            &copy; {new Date().getFullYear()} Pasindu Jeewan. All rights
+            reserved.
+          </p>
+          <Link
+            href="/admin/login"
+            className="font-semibold transition hover:text-aqua"
+          >
             Admin
           </Link>
         </footer>

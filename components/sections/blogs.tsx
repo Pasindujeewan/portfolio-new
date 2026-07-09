@@ -72,7 +72,7 @@ export function BlogsSection({ blogs }: { blogs: BlogPost[] }) {
         <SectionHeading
           eyebrow="Blogs"
           title="Notes from the engineering journey"
-          description="Writing topics around React, Next.js, UI/UX, software engineering, and cloud development."
+          description="Writing about modern software engineering, full-stack development, React, Next.js, cloud technologies, and DevOps."
         />
         {blogs.length === 0 ? (
           <div className="glass rounded-3xl p-6 text-center text-slate-600 shadow-lg dark:text-slate-300">
