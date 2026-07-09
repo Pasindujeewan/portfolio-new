@@ -7,6 +7,7 @@ export function AdminThemeToggle() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
+    // Rehydrate theme from localStorage so admin pages match the public site.
     const stored = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const enabled = stored ? stored === "dark" : prefersDark;
@@ -17,6 +18,7 @@ export function AdminThemeToggle() {
   function toggleTheme() {
     const next = !dark;
     setDark(next);
+    // Store the preference globally because Tailwind dark mode uses html.dark.
     localStorage.setItem("theme", next ? "dark" : "light");
     document.documentElement.classList.toggle("dark", next);
   }

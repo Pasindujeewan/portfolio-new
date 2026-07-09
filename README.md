@@ -31,7 +31,7 @@ ADMIN_PASSWORD=change-this-password
 AUTH_SECRET=replace-with-a-long-random-secret
 
 SUPABASE_URL=https://your-project-ref.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+SUPABASE_SECRET_KEY=your-secret-key
 ```
 
 If Supabase variables are missing, the app falls back to local `data/db.json`.
@@ -62,6 +62,6 @@ npm run start
 ## Production Notes
 
 - Do not commit `.env.local`.
-- Rotate any Supabase service role key that was shared outside your machine.
+- Rotate any Supabase server key that was shared outside your machine.
 - Add production content from the admin dashboard.
 - `data/db.json` is ignored because local messages/content can contain private data.

@@ -53,8 +53,10 @@ function AdminNav({ compact = false }: { compact?: boolean }) {
 export function AdminShell({ children, title }: { children: ReactNode; title: string }) {
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-50 px-3 pb-8 pt-4 text-slate-950 transition-colors dark:bg-[#070b16] dark:text-white sm:px-5 lg:px-6">
+      {/* Shared background keeps all admin routes visually consistent. */}
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_8%,rgba(0,184,169,0.14),transparent_28%),radial-gradient(circle_at_82%_2%,rgba(255,107,107,0.12),transparent_24%)] dark:bg-[radial-gradient(circle_at_20%_8%,rgba(0,184,169,0.18),transparent_28%),radial-gradient(circle_at_82%_2%,rgba(255,107,107,0.13),transparent_24%)]" />
       <div className="relative z-10 mx-auto max-w-7xl">
+        {/* Mobile admin header replaces the desktop sidebar on small screens. */}
         <div className="glass mb-5 rounded-3xl p-4 shadow-lg shadow-slate-200/60 dark:shadow-black/30 lg:hidden">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
@@ -84,6 +86,7 @@ export function AdminShell({ children, title }: { children: ReactNode; title: st
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
+          {/* Desktop sidebar keeps management routes one click away. */}
           <aside className="glass hidden h-fit overflow-hidden rounded-3xl p-4 shadow-lg shadow-slate-200/60 dark:shadow-black/30 lg:sticky lg:top-5 lg:block">
             <Link href="/" className="relative block overflow-hidden rounded-3xl bg-slate-950 px-5 py-5 text-white shadow-sm dark:bg-white dark:text-slate-950">
               <div className="absolute right-4 top-4 h-12 w-12 rounded-2xl bg-aqua/20" />

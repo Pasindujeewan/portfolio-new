@@ -19,7 +19,9 @@ export function BlogForm({ blog }: { blog?: BlogPost }) {
         </Link>
       </div>
       <form action={saveBlog} className="grid gap-4 md:grid-cols-2">
+        {/* Empty id means create; existing id means update the same blog post. */}
         <input type="hidden" name="id" value={blog?.id ?? ""} />
+        {/* Server action redirects back to the list after a successful save. */}
         <input type="hidden" name="redirectTo" value="/admin/blogs" />
         <Field label="Title" name="title" defaultValue={blog?.title} />
         <Field label="Category" name="category" defaultValue={blog?.category} />

@@ -1,6 +1,7 @@
 "use client";
 
 import { BookOpen, BriefcaseBusiness, GraduationCap, Home, Mail, UserRound } from "lucide-react";
+import { PJLogo } from "@/components/pj-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
@@ -17,8 +18,9 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <>
       <header className="fixed left-0 right-0 top-0 z-50 hidden px-6 py-4 lg:block">
         <nav className="glass mx-auto flex max-w-6xl items-center justify-between rounded-full px-4 py-3 shadow-lg">
-          <a href="#home" className="font-semibold text-slate-950 dark:text-white">
-            Pasindu Jeewan
+          <a href="#home" className="flex items-center gap-3 font-semibold text-slate-950 dark:text-white">
+            <PJLogo size="sm" />
+            <span>Pasindu Jeewan</span>
           </a>
           <div className="flex items-center gap-1">
             {links.map((link) => (

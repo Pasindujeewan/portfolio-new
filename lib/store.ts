@@ -7,6 +7,7 @@ import type { BlogPost, ContactMessage, EducationItem, PortfolioData, Project } 
 const dataDir = path.join(process.cwd(), "data");
 const dataFile = path.join(dataDir, "db.json");
 
+// Supabase uses snake_case for a few columns; app types stay camelCase.
 type SupabaseProject = Omit<Project, "stack"> & {
   stack: string[];
   created_at?: string;
@@ -34,6 +35,7 @@ async function ensureStore() {
   }
 }
 
+// Local JSON fallback keeps development working before Supabase is configured.
 async function readFileData(): Promise<PortfolioData> {
   await ensureStore();
   const raw = await fs.readFile(dataFile, "utf8");
@@ -71,6 +73,7 @@ function toMessage(row: SupabaseMessage): ContactMessage {
 }
 
 export async function readData(): Promise<PortfolioData> {
+  // Production path: use Supabase when both required env vars exist.
   if (!hasSupabaseConfig()) return readFileData();
 
   const supabase = createSupabaseAdminClient();
@@ -95,6 +98,7 @@ export async function readData(): Promise<PortfolioData> {
 }
 
 export async function upsertProject(project: Project) {
+  // Service-role Supabase client is only created on the server.
   if (hasSupabaseConfig()) {
     const { error } = await createSupabaseAdminClient().from("projects").upsert(project);
     assertSupabaseError(error);
@@ -182,6 +186,7 @@ export async function deleteEducation(id: string) {
 }
 
 export async function addMessage(message: ContactMessage) {
+  // Contact messages are write-only from the public form and read in admin.
   if (hasSupabaseConfig()) {
     const { error } = await createSupabaseAdminClient()
       .from("messages")

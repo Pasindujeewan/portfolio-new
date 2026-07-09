@@ -12,6 +12,7 @@ const projectStep = 4;
 
 export function ProjectsSection({ projects }: { projects: Project[] }) {
   const [visibleCount, setVisibleCount] = useState(initialProjectCount);
+  // Keep large project lists fast and readable by revealing them in batches.
   const visibleProjects = useMemo(() => projects.slice(0, visibleCount), [projects, visibleCount]);
   const hasMore = visibleCount < projects.length;
 

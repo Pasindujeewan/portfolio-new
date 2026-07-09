@@ -4,6 +4,7 @@ import { createSessionToken, sessionCookie, verifySessionToken } from "@/lib/ses
 export async function setSession(email: string) {
   const token = await createSessionToken(email);
   const cookieStore = await cookies();
+  // HttpOnly keeps the admin session inaccessible to browser JavaScript.
   cookieStore.set(sessionCookie, token, {
     httpOnly: true,
     sameSite: "lax",

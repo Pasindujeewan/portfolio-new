@@ -4,6 +4,7 @@ export const sessionCookie = "pasindu_admin_session";
 
 const encoder = new TextEncoder();
 
+// Convert binary signatures into URL-safe strings for cookie storage.
 function base64url(buffer: ArrayBuffer | Uint8Array) {
   const bytes = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
   let binary = "";
@@ -34,6 +35,7 @@ export async function createSessionToken(email: string) {
     encoder.encode(
       JSON.stringify({
         email,
+        // Admin sessions expire after 8 hours.
         exp: Date.now() + 1000 * 60 * 60 * 8
       })
     )
@@ -49,6 +51,7 @@ export async function verifySessionToken(token?: string) {
   if (signature !== expected) return false;
 
   try {
+    // A valid signature is not enough; reject expired sessions too.
     const decoded = new TextDecoder().decode(fromBase64url(payload));
     const parsed = JSON.parse(decoded) as { exp: number };
     return parsed.exp > Date.now();
@@ -62,10 +65,12 @@ export async function protectAdminRoute(request: NextRequest) {
   const isLogin = pathname === "/admin/login";
   const verified = await verifySessionToken(request.cookies.get(sessionCookie)?.value);
 
+  // Any unauthenticated admin route is sent to the login screen.
   if (!verified && !isLogin) {
     return NextResponse.redirect(new URL("/admin/login", request.url));
   }
 
+  // Already logged-in admins should not see the login page again.
   if (verified && isLogin) {
     return NextResponse.redirect(new URL("/admin", request.url));
   }

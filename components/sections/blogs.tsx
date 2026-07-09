@@ -43,6 +43,7 @@ function BlogCard({ blog }: { blog: BlogPost }) {
 export function BlogsSection({ blogs }: { blogs: BlogPost[] }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
+  // Duplicate cards only for the carousel loop; original blog data is unchanged.
   const loopBlogs = useMemo(
     () => (blogs.length > 1 ? [...blogs, ...blogs] : blogs),
     [blogs],
@@ -52,6 +53,7 @@ export function BlogsSection({ blogs }: { blogs: BlogPost[] }) {
     const scroller = scrollerRef.current;
     if (!scroller || blogs.length < 2 || paused) return;
 
+    // Slow, tiny increments create a smooth auto-scroll that pauses on interaction.
     const interval = window.setInterval(() => {
       const halfWidth = scroller.scrollWidth / 2;
       if (scroller.scrollLeft >= halfWidth) {

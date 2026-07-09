@@ -10,6 +10,7 @@ export function ContactForm() {
   const [state, action, pending] = useActionState(sendContactMessage, initialState);
 
   return (
+    // Server action handles validation and persistence, keeping secrets off the client.
     <form action={action} className="glass rounded-3xl p-6 shadow-glow">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-2 text-sm font-medium text-slate-700 dark:text-slate-200">

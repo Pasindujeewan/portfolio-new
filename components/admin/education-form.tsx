@@ -21,7 +21,9 @@ export function EducationForm({ item }: { item?: EducationItem }) {
         </Link>
       </div>
       <form action={saveEducation} className="grid gap-4 md:grid-cols-2">
+        {/* Empty id means create; existing id means update the same item. */}
         <input type="hidden" name="id" value={item?.id ?? ""} />
+        {/* Server action redirects back to the list after a successful save. */}
         <input type="hidden" name="redirectTo" value="/admin/education" />
         <Field label="Title" name="title" defaultValue={item?.title} />
         <Field label="Institution" name="institution" defaultValue={item?.institution} />

@@ -7,6 +7,7 @@ export function ThemeToggle() {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
+    // Use saved preference first, then fall back to the system color scheme.
     const stored = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const enabled = stored ? stored === "dark" : prefersDark;
@@ -17,6 +18,7 @@ export function ThemeToggle() {
   function toggle() {
     const next = !dark;
     setDark(next);
+    // Tailwind dark mode is class-based, so the html element owns the state.
     localStorage.setItem("theme", next ? "dark" : "light");
     document.documentElement.classList.toggle("dark", next);
   }

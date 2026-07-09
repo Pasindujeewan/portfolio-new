@@ -21,7 +21,9 @@ export function ProjectForm({ project }: { project?: Project }) {
         </Link>
       </div>
       <form action={saveProject} className="grid gap-4 md:grid-cols-2">
+        {/* Empty id means create; existing id means update the same project. */}
         <input type="hidden" name="id" value={project?.id ?? ""} />
+        {/* Server action redirects back to the list after a successful save. */}
         <input type="hidden" name="redirectTo" value="/admin/projects" />
         <Field label="Title" name="title" defaultValue={project?.title} />
         <Field label="Icon" name="icon" defaultValue={project?.icon ?? "MonitorSmartphone"} />

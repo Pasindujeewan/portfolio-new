@@ -11,6 +11,7 @@ const educationStep = 3;
 
 export function EducationSection({ education }: { education: EducationItem[] }) {
   const [visibleCount, setVisibleCount] = useState(initialEducationCount);
+  // Certificates and education items use the same timeline and load-more flow.
   const visibleEducation = useMemo(() => education.slice(0, visibleCount), [education, visibleCount]);
   const hasMore = visibleCount < education.length;
 

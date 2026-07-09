@@ -12,7 +12,7 @@ If these variables exist, the app uses Supabase:
 
 ```env
 SUPABASE_URL=https://your-project-ref.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+SUPABASE_SECRET_KEY=your-secret-key
 ```
 
 ## Where To Add Supabase Details
@@ -27,10 +27,10 @@ For deployment, add them in your hosting provider environment variables:
 
 ```txt
 SUPABASE_URL
-SUPABASE_SERVICE_ROLE_KEY
+SUPABASE_SECRET_KEY
 ```
 
-Do not put `SUPABASE_SERVICE_ROLE_KEY` in frontend code or expose it publicly.
+Do not put `SUPABASE_SECRET_KEY` in frontend code or expose it publicly.
 
 ## How To Get Supabase Values
 
@@ -40,7 +40,9 @@ In Supabase:
 2. Go to Project Settings.
 3. Go to API.
 4. Copy Project URL into `SUPABASE_URL`.
-5. Copy `service_role` key into `SUPABASE_SERVICE_ROLE_KEY`.
+5. Copy the new server-side `Secret key` into `SUPABASE_SECRET_KEY`.
+
+The code still supports the legacy `SUPABASE_SERVICE_ROLE_KEY` as a fallback, but new projects should prefer `SUPABASE_SECRET_KEY`.
 
 ## Create Tables
 

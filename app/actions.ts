@@ -16,6 +16,7 @@ function field(formData: FormData, key: string) {
   return String(formData.get(key) ?? "");
 }
 
+// Only allow server actions to redirect back into the admin area.
 function adminRedirectPath(formData: FormData) {
   const redirectTo = field(formData, "redirectTo");
   return redirectTo.startsWith("/admin/") ? redirectTo : "";
@@ -53,6 +54,7 @@ export async function loginAdmin(_state: ActionState, formData: FormData): Promi
   const adminEmail = process.env.ADMIN_EMAIL;
   const adminPassword = process.env.ADMIN_PASSWORD;
 
+  // Admin credentials stay server-side in environment variables.
   if (!adminEmail || !adminPassword || !process.env.AUTH_SECRET) {
     return { ok: false, message: "Admin environment variables are not configured." };
   }
@@ -84,6 +86,7 @@ export async function saveProject(formData: FormData) {
   await upsertProject({
     ...parsed,
     id: parsed.id || slugify(parsed.title) || uid("project"),
+    // Admin form stores stack as comma-separated text; persistence uses an array.
     stack: parsed.stack.split(",").map((item) => item.trim()).filter(Boolean)
   });
   revalidatePath("/");
