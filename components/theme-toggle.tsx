@@ -11,10 +11,9 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    // Use saved preference first, then fall back to the system color scheme.
+    // Use saved preference first; the portfolio defaults to dark mode.
     const stored = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const enabled = stored ? stored === "dark" : prefersDark;
+    const enabled = stored ? stored === "dark" : true;
     setDark(enabled);
     document.documentElement.classList.toggle("dark", enabled);
   }, []);

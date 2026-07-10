@@ -9,8 +9,7 @@ export function AdminThemeToggle() {
   useEffect(() => {
     // Rehydrate theme from localStorage so admin pages match the public site.
     const stored = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const enabled = stored ? stored === "dark" : prefersDark;
+    const enabled = stored ? stored === "dark" : true;
     setDark(enabled);
     document.documentElement.classList.toggle("dark", enabled);
   }, []);
