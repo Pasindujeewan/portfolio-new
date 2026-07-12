@@ -49,6 +49,7 @@ export default async function AdminBlogsPage() {
                 </Link>
                 <form action={removeBlog}>
                   <input type="hidden" name="id" value={blog.id} />
+                  <input type="hidden" name="redirectTo" value="/admin/blogs" />
                   <DeleteButton />
                 </form>
               </div>

@@ -35,6 +35,7 @@ export default async function AdminMessagesPage() {
                 </Link>
                 <form action={removeMessage} className="w-full sm:w-auto">
                   <input type="hidden" name="id" value={message.id} />
+                  <input type="hidden" name="redirectTo" value="/admin/messages" />
                   <DeleteButton />
                 </form>
               </div>

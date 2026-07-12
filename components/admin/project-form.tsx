@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { saveProject } from "@/app/actions";
-import { AdminCard, Field, SaveButton, TextArea } from "@/components/admin/form-fields";
+import { AdminCard, Field, SaveButton, SelectField, TextArea } from "@/components/admin/form-fields";
 import type { Project } from "@/types/content";
+
+const projectIconOptions = [
+  { label: "Monitor / Smartphone", value: "MonitorSmartphone" },
+  { label: "File Search", value: "FileSearch" },
+  { label: "Graduation Cap", value: "GraduationCap" },
+  { label: "Smartphone", value: "Smartphone" },
+  { label: "Map Pin", value: "MapPinned" }
+];
 
 export function ProjectForm({ project }: { project?: Project }) {
   return (
@@ -26,7 +34,7 @@ export function ProjectForm({ project }: { project?: Project }) {
         {/* Server action redirects back to the list after a successful save. */}
         <input type="hidden" name="redirectTo" value="/admin/projects" />
         <Field label="Title" name="title" defaultValue={project?.title} />
-        <Field label="Icon" name="icon" defaultValue={project?.icon ?? "MonitorSmartphone"} />
+        <SelectField label="Icon" name="icon" defaultValue={project?.icon ?? "MonitorSmartphone"} options={projectIconOptions} />
         <Field label="Tech stack, comma separated" name="stack" defaultValue={project?.stack.join(", ")} />
         <Field label="GitHub URL" name="github" type="url" defaultValue={project?.github ?? "https://github.com/Pasindujeewana1"} />
         <Field label="Live demo URL" name="demo" type="url" defaultValue={project?.demo ?? "https://github.com/Pasindujeewana1"} />

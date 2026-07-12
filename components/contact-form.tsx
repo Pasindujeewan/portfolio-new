@@ -1,17 +1,46 @@
 "use client";
 
 import { useActionState } from "react";
+import { FormEvent, useCallback, useEffect } from "react";
 import { Send } from "lucide-react";
 import { sendContactMessage, type ActionState } from "@/app/actions";
+import { useToast } from "@/components/toast";
 
 const initialState: ActionState = { ok: false, message: "" };
 
 export function ContactForm() {
   const [state, action, pending] = useActionState(sendContactMessage, initialState);
+  const { showToast } = useToast();
+
+  const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    let validationMessage = "";
+    if (name.length < 2) validationMessage = "Name must be at least 2 characters.";
+    else if (!email) validationMessage = "Enter your email address.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) validationMessage = "Enter a valid email address.";
+    else if (message.length < 10) validationMessage = "Message must be at least 10 characters.";
+
+    if (validationMessage) {
+      event.preventDefault();
+      showToast(validationMessage, "error");
+    }
+  }, [showToast]);
+
+  useEffect(() => {
+    if (pending) showToast("Sending message...", "loading");
+  }, [pending, showToast]);
+
+  useEffect(() => {
+    if (state.message) showToast(state.message, state.ok ? "success" : "error");
+  }, [showToast, state.message, state.ok]);
 
   return (
     // Server action handles validation and persistence, keeping secrets off the client.
-    <form action={action} className="glass rounded-3xl p-6 shadow-glow">
+    <form action={action} noValidate onSubmit={handleSubmit} className="glass rounded-3xl p-6 shadow-glow">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-2 text-sm font-medium text-slate-700 dark:text-slate-200">
           Name
@@ -53,11 +82,6 @@ export function ContactForm() {
           <Send size={17} />
           {pending ? "Sending..." : "Send Message"}
         </button>
-        {state.message ? (
-          <p className={state.ok ? "text-sm font-medium text-aqua" : "text-sm font-medium text-coral"}>
-            {state.message}
-          </p>
-        ) : null}
       </div>
     </form>
   );

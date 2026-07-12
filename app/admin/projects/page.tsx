@@ -51,6 +51,7 @@ export default async function AdminProjectsPage() {
                 </Link>
                 <form action={removeProject}>
                   <input type="hidden" name="id" value={project.id} />
+                  <input type="hidden" name="redirectTo" value="/admin/projects" />
                   <DeleteButton />
                 </form>
               </div>

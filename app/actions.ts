@@ -22,6 +22,11 @@ function adminRedirectPath(formData: FormData) {
   return redirectTo.startsWith("/admin/") ? redirectTo : "";
 }
 
+function withToast(path: string, message: string, type: "success" | "error" = "success") {
+  const params = new URLSearchParams({ toast: message, type });
+  return `${path}?${params.toString()}`;
+}
+
 export async function sendContactMessage(_state: ActionState, formData: FormData): Promise<ActionState> {
   const parsed = contactSchema.safeParse({
     name: field(formData, "name"),
@@ -33,14 +38,18 @@ export async function sendContactMessage(_state: ActionState, formData: FormData
     return { ok: false, message: parsed.error.issues[0]?.message ?? "Please check the form." };
   }
 
-  await addMessage({
-    id: uid("msg"),
-    ...parsed.data,
-    createdAt: new Date().toISOString()
-  });
-  revalidatePath("/");
-  revalidatePath("/admin/messages");
-  return { ok: true, message: "Message sent. Thank you for reaching out." };
+  try {
+    await addMessage({
+      id: uid("msg"),
+      ...parsed.data,
+      createdAt: new Date().toISOString()
+    });
+    revalidatePath("/");
+    revalidatePath("/admin/messages");
+    return { ok: true, message: "Message sent. Thank you for reaching out." };
+  } catch {
+    return { ok: false, message: "Message could not be sent. Please try again." };
+  }
 }
 
 export async function loginAdmin(_state: ActionState, formData: FormData): Promise<ActionState> {
@@ -92,13 +101,15 @@ export async function saveProject(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/admin/projects");
   const redirectTo = adminRedirectPath(formData);
-  if (redirectTo) redirect(redirectTo);
+  if (redirectTo) redirect(withToast(redirectTo, "Project saved successfully."));
 }
 
 export async function removeProject(formData: FormData) {
   await deleteProject(field(formData, "id"));
   revalidatePath("/");
   revalidatePath("/admin/projects");
+  const redirectTo = adminRedirectPath(formData);
+  if (redirectTo) redirect(withToast(redirectTo, "Project deleted successfully."));
 }
 
 export async function saveBlog(formData: FormData) {
@@ -114,21 +125,27 @@ export async function saveBlog(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/admin/blogs");
   const redirectTo = adminRedirectPath(formData);
-  if (redirectTo) redirect(redirectTo);
+  if (redirectTo) redirect(withToast(redirectTo, "Blog post saved successfully."));
 }
 
 export async function removeBlog(formData: FormData) {
   await deleteBlog(field(formData, "id"));
   revalidatePath("/");
   revalidatePath("/admin/blogs");
+  const redirectTo = adminRedirectPath(formData);
+  if (redirectTo) redirect(withToast(redirectTo, "Blog post deleted successfully."));
 }
 
 export async function saveEducation(formData: FormData) {
+  const startYear = field(formData, "startYear");
+  const endYear = field(formData, "endYear");
+  const period = startYear && endYear ? `${startYear} - ${endYear}` : field(formData, "period");
+
   const parsed = educationSchema.parse({
     id: field(formData, "id"),
     title: field(formData, "title"),
     institution: field(formData, "institution"),
-    period: field(formData, "period"),
+    period,
     description: field(formData, "description"),
     type: field(formData, "type")
   });
@@ -136,18 +153,20 @@ export async function saveEducation(formData: FormData) {
   revalidatePath("/");
   revalidatePath("/admin/education");
   const redirectTo = adminRedirectPath(formData);
-  if (redirectTo) redirect(redirectTo);
+  if (redirectTo) redirect(withToast(redirectTo, "Education item saved successfully."));
 }
 
 export async function removeEducation(formData: FormData) {
   await deleteEducation(field(formData, "id"));
   revalidatePath("/");
   revalidatePath("/admin/education");
+  const redirectTo = adminRedirectPath(formData);
+  if (redirectTo) redirect(withToast(redirectTo, "Education item deleted successfully."));
 }
 
 export async function removeMessage(formData: FormData) {
   await deleteMessage(field(formData, "id"));
   revalidatePath("/admin/messages");
   const redirectTo = adminRedirectPath(formData);
-  if (redirectTo) redirect(redirectTo);
+  if (redirectTo) redirect(withToast(redirectTo, "Message deleted successfully."));
 }

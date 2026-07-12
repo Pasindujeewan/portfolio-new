@@ -1,9 +1,23 @@
 import Link from "next/link";
 import { saveEducation } from "@/app/actions";
-import { AdminCard, Field, SaveButton, TextArea } from "@/components/admin/form-fields";
+import { AdminCard, Field, SaveButton, SelectField, TextArea } from "@/components/admin/form-fields";
 import type { EducationItem } from "@/types/content";
 
+const currentYear = new Date().getFullYear();
+const yearOptions = Array.from({ length: currentYear - 1980 + 1 }, (_, index) => {
+  const year = String(currentYear - index);
+  return { label: year, value: year };
+});
+const endYearOptions = [{ label: "Present", value: "Present" }, ...yearOptions];
+
+function periodYears(period?: string) {
+  const [startYear = String(currentYear), endYear = "Present"] = period?.split(/\s*(?:-|\u2013)\s*/) ?? [];
+  return { startYear, endYear };
+}
+
 export function EducationForm({ item }: { item?: EducationItem }) {
+  const { startYear, endYear } = periodYears(item?.period);
+
   return (
     <AdminCard>
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -27,7 +41,8 @@ export function EducationForm({ item }: { item?: EducationItem }) {
         <input type="hidden" name="redirectTo" value="/admin/education" />
         <Field label="Title" name="title" defaultValue={item?.title} />
         <Field label="Institution" name="institution" defaultValue={item?.institution} />
-        <Field label="Period" name="period" defaultValue={item?.period} />
+        <SelectField label="Start year" name="startYear" defaultValue={startYear} options={yearOptions} />
+        <SelectField label="End year" name="endYear" defaultValue={endYear} options={endYearOptions} />
         <label className="block min-w-0 text-sm font-semibold text-slate-700 dark:text-slate-200">
           Type
           <select

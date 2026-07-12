@@ -51,6 +51,7 @@ export default async function AdminEducationPage() {
                 </Link>
                 <form action={removeEducation}>
                   <input type="hidden" name="id" value={item.id} />
+                  <input type="hidden" name="redirectTo" value="/admin/education" />
                   <DeleteButton />
                 </form>
               </div>

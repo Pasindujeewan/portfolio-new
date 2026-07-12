@@ -1,8 +1,10 @@
 import { BookOpen, ExternalLink, FolderKanban, GraduationCap, LayoutDashboard, LogOut, Mail } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 import type { ReactNode } from "react";
 import { logoutAdmin } from "@/app/actions";
 import { AdminThemeToggle } from "@/components/admin/admin-theme-toggle";
+import { ToastFromSearchParams } from "@/components/toast";
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -53,6 +55,9 @@ function AdminNav({ compact = false }: { compact?: boolean }) {
 export function AdminShell({ children, title }: { children: ReactNode; title: string }) {
   return (
     <main className="relative min-h-screen overflow-hidden bg-slate-50 px-3 pb-8 pt-4 text-slate-950 transition-colors dark:bg-[#070b16] dark:text-white sm:px-5 lg:px-6">
+      <Suspense fallback={null}>
+        <ToastFromSearchParams />
+      </Suspense>
       {/* Shared background keeps all admin routes visually consistent. */}
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_8%,rgba(0,184,169,0.14),transparent_28%),radial-gradient(circle_at_82%_2%,rgba(255,107,107,0.12),transparent_24%)] dark:bg-[radial-gradient(circle_at_20%_8%,rgba(0,184,169,0.18),transparent_28%),radial-gradient(circle_at_82%_2%,rgba(255,107,107,0.13),transparent_24%)]" />
       <div className="relative z-10 mx-auto max-w-7xl">

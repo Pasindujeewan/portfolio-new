@@ -14,7 +14,7 @@ const words = [
   "Mobile Development",
   "System Design",
   "DevOps",
-  "AI Integration",
+  "API Integration",
 ];
 
 export function HomeSection() {
