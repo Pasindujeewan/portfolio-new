@@ -1,8 +1,10 @@
 import type { LucideIcon } from "lucide-react";
+import type { ProjectCategory } from "@/lib/project-categories";
 
 export type Project = {
   id: string;
   title: string;
+  category: ProjectCategory;
   description: string;
   stack: string[];
   icon: string;

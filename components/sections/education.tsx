@@ -9,18 +9,45 @@ import type { EducationItem } from "@/types/content";
 const initialEducationCount = 3;
 const educationStep = 3;
 
+function periodYears(period: string, currentYear: number) {
+  const years = (period.match(/\b(?:19|20)\d{2}\b/g) ?? []).map(Number);
+  return {
+    startYear: years[0] ?? 0,
+    latestYear: /present/i.test(period)
+      ? currentYear
+      : years[years.length - 1] ?? years[0] ?? 0,
+  };
+}
+
 export function EducationSection({
   education,
 }: {
   education: EducationItem[];
 }) {
   const [visibleCount, setVisibleCount] = useState(initialEducationCount);
-  // Certificates and education items use the same timeline and load-more flow.
+  const sortedEducation = useMemo(() => {
+    const currentYear = new Date().getFullYear();
+    return education
+      .map((item, index) => ({
+        item,
+        index,
+        typeOrder: item.type === "degree" ? 0 : 1,
+        ...periodYears(item.period, currentYear),
+      }))
+      .sort(
+        (a, b) =>
+          a.typeOrder - b.typeOrder ||
+          b.latestYear - a.latestYear ||
+          b.startYear - a.startYear ||
+          a.index - b.index,
+      )
+      .map(({ item }) => item);
+  }, [education]);
   const visibleEducation = useMemo(
-    () => education.slice(0, visibleCount),
-    [education, visibleCount],
+    () => sortedEducation.slice(0, visibleCount),
+    [sortedEducation, visibleCount],
   );
-  const hasMore = visibleCount < education.length;
+  const hasMore = visibleCount < sortedEducation.length;
 
   return (
     <MotionSection id="education" className="px-5 py-20 md:px-8">
@@ -45,17 +72,17 @@ export function EducationSection({
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ delay: index * 0.06 }}
-                  className="relative pl-16"
+                  className="relative pl-14 sm:pl-16"
                 >
-                  <div className="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full bg-slate-950 text-aqua ring-8 ring-slate-50 dark:bg-white dark:text-slate-950 dark:ring-night">
+                  <div className="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full bg-slate-200 text-slate-700 ring-8 ring-slate-50 dark:bg-white/10 dark:text-white dark:ring-night">
                     <Icon size={20} />
                   </div>
-                  <div className="glass rounded-3xl p-6 shadow-lg">
+                  <div className="glass rounded-3xl p-5 shadow-lg shadow-black/[0.04] transition duration-300 hover:border-aqua/30 hover:shadow-glow sm:p-6">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <h3 className="text-xl font-bold text-slate-950 dark:text-white">
                         {item.title}
                       </h3>
-                      <span className="rounded-full bg-citrus/15 px-3 py-1 text-xs font-bold text-slate-800 dark:text-citrus">
+                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700 dark:bg-white/10 dark:text-slate-300">
                         {item.period}
                       </span>
                     </div>
@@ -78,12 +105,12 @@ export function EducationSection({
               type="button"
               onClick={() =>
                 setVisibleCount((count) =>
-                  Math.min(count + educationStep, education.length),
+                  Math.min(count + educationStep, sortedEducation.length),
                 )
               }
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-6 py-3 text-sm font-bold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-aqua hover:text-aqua dark:border-white/10 dark:bg-white/10 dark:text-slate-200"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-6 py-3 text-sm font-bold text-slate-700 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-aqua hover:text-aqua dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-200"
             >
-              Load More Certificates
+              Load More Education
               <ChevronDown size={17} />
             </button>
           </div>

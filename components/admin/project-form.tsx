@@ -1,15 +1,37 @@
 import Link from "next/link";
 import { saveProject } from "@/app/actions";
 import { AdminCard, Field, SaveButton, SelectField, TextArea } from "@/components/admin/form-fields";
+import { normalizeProjectCategory, projectCategories } from "@/lib/project-categories";
 import type { Project } from "@/types/content";
 
 const projectIconOptions = [
   { label: "Monitor / Smartphone", value: "MonitorSmartphone" },
+  { label: "Code", value: "Code2" },
   { label: "File Search", value: "FileSearch" },
   { label: "Graduation Cap", value: "GraduationCap" },
   { label: "Smartphone", value: "Smartphone" },
-  { label: "Map Pin", value: "MapPinned" }
+  { label: "Map Pin", value: "MapPinned" },
+  { label: "Database", value: "Database" },
+  { label: "Server", value: "Server" },
+  { label: "Cloud", value: "Cloud" },
+  { label: "Globe / Web", value: "Globe" },
+  { label: "Workflow", value: "Workflow" },
+  { label: "Connected Systems", value: "Network" },
+  { label: "Components", value: "Boxes" },
+  { label: "Artificial Intelligence", value: "Bot" },
+  { label: "Machine Learning", value: "Brain" },
+  { label: "Hardware", value: "Cpu" },
+  { label: "Shopping", value: "ShoppingCart" },
+  { label: "Gaming", value: "Gamepad2" },
+  { label: "Music", value: "Music" },
+  { label: "Security", value: "Shield" },
+  { label: "Tools", value: "Wrench" },
+  { label: "Health", value: "HeartPulse" }
 ];
+const projectCategoryOptions = projectCategories.map((category) => ({
+  label: category,
+  value: category,
+}));
 
 export function ProjectForm({ project }: { project?: Project }) {
   return (
@@ -34,6 +56,12 @@ export function ProjectForm({ project }: { project?: Project }) {
         {/* Server action redirects back to the list after a successful save. */}
         <input type="hidden" name="redirectTo" value="/admin/projects" />
         <Field label="Title" name="title" defaultValue={project?.title} />
+        <SelectField
+          label="Category"
+          name="category"
+          defaultValue={normalizeProjectCategory(project?.category)}
+          options={projectCategoryOptions}
+        />
         <SelectField label="Icon" name="icon" defaultValue={project?.icon ?? "MonitorSmartphone"} options={projectIconOptions} />
         <Field label="Tech stack, comma separated" name="stack" defaultValue={project?.stack.join(", ")} />
         <Field label="GitHub URL" name="github" type="url" defaultValue={project?.github ?? "https://github.com/Pasindujeewana1"} />

@@ -18,7 +18,7 @@ export function ContactSection() {
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            className="glass rounded-3xl p-6 shadow-lg"
+            className="glass rounded-3xl p-6 shadow-lg shadow-black/[0.04] transition duration-300 hover:border-aqua/25"
           >
             <h3 className="text-2xl font-bold text-slate-950 dark:text-white">
               Connect with me
@@ -52,7 +52,7 @@ export function ContactSection() {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/60 p-4 font-semibold text-slate-700 transition hover:border-aqua hover:text-aqua dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
+                    className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/60 p-4 font-semibold text-slate-700 transition duration-200 hover:border-aqua/40 hover:bg-aqua/10 hover:text-aqua dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-200"
                   >
                     <Icon size={20} className="shrink-0" />
                     <span className="min-w-0 break-words">{item.label}</span>

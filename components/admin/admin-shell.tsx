@@ -54,12 +54,12 @@ function AdminNav({ compact = false }: { compact?: boolean }) {
 
 export function AdminShell({ children, title }: { children: ReactNode; title: string }) {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-slate-50 px-3 pb-8 pt-4 text-slate-950 transition-colors dark:bg-[#070b16] dark:text-white sm:px-5 lg:px-6">
+    <main className="relative min-h-screen overflow-hidden bg-slate-50 px-3 pb-8 pt-4 text-slate-950 transition-colors dark:bg-[#09090b] dark:text-white sm:px-5 lg:px-6">
       <Suspense fallback={null}>
         <ToastFromSearchParams />
       </Suspense>
       {/* Shared background keeps all admin routes visually consistent. */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_8%,rgba(0,184,169,0.14),transparent_28%),radial-gradient(circle_at_82%_2%,rgba(255,107,107,0.12),transparent_24%)] dark:bg-[radial-gradient(circle_at_20%_8%,rgba(0,184,169,0.18),transparent_28%),radial-gradient(circle_at_82%_2%,rgba(255,107,107,0.13),transparent_24%)]" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_8%,rgba(15,23,42,0.04),transparent_28%)] dark:bg-[radial-gradient(circle_at_20%_8%,rgba(255,255,255,0.035),transparent_28%)]" />
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* Mobile admin header replaces the desktop sidebar on small screens. */}
         <div className="glass mb-5 rounded-3xl p-4 shadow-lg shadow-slate-200/60 dark:shadow-black/30 lg:hidden">
@@ -73,7 +73,7 @@ export function AdminShell({ children, title }: { children: ReactNode; title: st
               <Link
                 href="/"
                 aria-label="View site"
-                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-sm transition hover:bg-aqua dark:bg-white dark:text-slate-950"
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
               >
                 <ExternalLink size={18} />
               </Link>

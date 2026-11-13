@@ -57,9 +57,11 @@ export function AboutSection() {
           title="Creating software that solves real problems"
           description="I build practical digital products by combining thoughtful design, modern development practices, and scalable engineering. My goal is to create software that delivers real value and exceptional user experiences."
         />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:auto-rows-[14rem] lg:grid-cols-3">
           {skills.map((skill, index) => {
             const Icon = skill.icon;
+            const isFeatured = index === 0;
+
             return (
               <MotionDiv
                 key={skill.title}
@@ -67,17 +69,52 @@ export function AboutSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ delay: index * 0.05 }}
-                className="glass rounded-3xl p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-glow"
+                className={`glass group relative flex min-h-56 flex-col overflow-hidden rounded-3xl p-5 shadow-lg shadow-black/[0.03] transition duration-300 hover:-translate-y-1 hover:border-aqua/30 hover:shadow-glow sm:p-6 ${
+                  isFeatured
+                    ? "min-h-80 sm:col-span-2 lg:col-span-2 lg:row-span-2 lg:p-8"
+                    : ""
+                }`}
               >
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-aqua dark:bg-white dark:text-slate-950">
-                  <Icon size={23} />
+                {isFeatured ? (
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-slate-400/5 blur-3xl"
+                  />
+                ) : null}
+                <div className="relative mb-5 flex items-center justify-between">
+                  <span className="inline-flex items-center justify-center text-aqua transition duration-300 group-hover:scale-110">
+                    <Icon size={isFeatured ? 30 : 25} strokeWidth={1.8} />
+                  </span>
+                  <span className="font-mono text-xs text-slate-400/80 dark:text-slate-500">
+                    0{index + 1}
+                  </span>
                 </div>
-                <h3 className="text-lg font-bold text-slate-950 dark:text-white">
-                  {skill.title}
-                </h3>
-                <p className="mt-2 leading-7 text-slate-600 dark:text-slate-300">
-                  {skill.description}
-                </p>
+                <div className="relative">
+                  <h3
+                    className={`font-bold tracking-tight text-slate-950 dark:text-white ${
+                      isFeatured ? "text-2xl sm:text-3xl" : "text-lg"
+                    }`}
+                  >
+                    {skill.title}
+                  </h3>
+                  <p
+                    className={`mt-2 leading-7 text-slate-600 dark:text-slate-300 ${
+                      isFeatured
+                        ? "max-w-lg text-base sm:text-lg"
+                        : "text-sm leading-6"
+                    }`}
+                  >
+                    {skill.description}
+                  </p>
+                </div>
+                {isFeatured ? (
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -bottom-8 right-4 font-mono text-[8rem] font-bold leading-none text-aqua/[0.045]"
+                  >
+                    01
+                  </span>
+                ) : null}
               </MotionDiv>
             );
           })}

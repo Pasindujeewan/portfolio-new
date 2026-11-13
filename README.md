@@ -29,6 +29,8 @@ Create `.env.local`:
 ADMIN_EMAIL=admin@example.com
 ADMIN_PASSWORD=change-this-password
 AUTH_SECRET=replace-with-a-long-random-secret
+# Set this to the deployed HTTPS origin before launch.
+NEXT_PUBLIC_SITE_URL=
 
 SUPABASE_URL=https://your-project-ref.supabase.co
 SUPABASE_SECRET_KEY=your-secret-key
@@ -62,6 +64,7 @@ npm run start
 ## Production Notes
 
 - Do not commit `.env.local`.
+- Set `NEXT_PUBLIC_SITE_URL` to the deployed site's canonical HTTPS origin; it powers canonical metadata, the sitemap, robots sitemap reference, and social preview URLs.
 - Rotate any Supabase server key that was shared outside your machine.
 - Add production content from the admin dashboard.
 - `data/db.json` is ignored because local messages/content can contain private data.

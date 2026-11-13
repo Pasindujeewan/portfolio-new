@@ -40,7 +40,7 @@ export function ContactForm() {
 
   return (
     // Server action handles validation and persistence, keeping secrets off the client.
-    <form action={action} noValidate onSubmit={handleSubmit} className="glass rounded-3xl p-6 shadow-glow">
+    <form action={action} noValidate onSubmit={handleSubmit} className="glass rounded-3xl p-5 shadow-glow sm:p-7">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-2 text-sm font-medium text-slate-700 dark:text-slate-200">
           Name
@@ -48,7 +48,7 @@ export function ContactForm() {
             name="name"
             minLength={2}
             required
-            className="mt-2 w-full rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 outline-none transition focus:border-aqua focus:ring-4 focus:ring-aqua/15 dark:border-white/10 dark:bg-white/5"
+            className="mt-2 w-full rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 outline-none transition duration-200 placeholder:text-slate-400 focus:border-aqua focus:ring-4 focus:ring-aqua/15 dark:border-white/10 dark:bg-white/[0.03]"
             placeholder="Your name"
           />
         </label>
@@ -58,7 +58,7 @@ export function ContactForm() {
             name="email"
             type="email"
             required
-            className="mt-2 w-full rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 outline-none transition focus:border-aqua focus:ring-4 focus:ring-aqua/15 dark:border-white/10 dark:bg-white/5"
+            className="mt-2 w-full rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 outline-none transition duration-200 placeholder:text-slate-400 focus:border-aqua focus:ring-4 focus:ring-aqua/15 dark:border-white/10 dark:bg-white/[0.03]"
             placeholder="you@example.com"
           />
         </label>
@@ -70,14 +70,14 @@ export function ContactForm() {
           minLength={10}
           required
           rows={5}
-          className="mt-2 w-full resize-none rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 outline-none transition focus:border-aqua focus:ring-4 focus:ring-aqua/15 dark:border-white/10 dark:bg-white/5"
+          className="mt-2 w-full resize-none rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 outline-none transition duration-200 placeholder:text-slate-400 focus:border-aqua focus:ring-4 focus:ring-aqua/15 dark:border-white/10 dark:bg-white/[0.03]"
           placeholder="Tell me about your project or opportunity..."
         />
       </label>
       <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
         <button
           disabled={pending}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-aqua disabled:cursor-wait disabled:opacity-70 dark:bg-white dark:text-slate-950 sm:w-auto"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-lg transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 disabled:cursor-wait disabled:opacity-70 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 sm:w-auto"
         >
           <Send size={17} />
           {pending ? "Sending..." : "Send Message"}

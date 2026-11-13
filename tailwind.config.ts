@@ -10,18 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#101828",
-        aqua: "#00b8a9",
-        coral: "#ff6b6b",
-        citrus: "#f7b731",
-        night: "#0b1020"
+        ink: "#111216",
+        aqua: "#3b82f6",
+        coral: "#f87171",
+        citrus: "#9ca3af",
+        night: "#09090b"
       },
       boxShadow: {
-        glow: "0 24px 80px rgba(0, 184, 169, 0.22)"
+        glow: "0 24px 80px rgba(0, 0, 0, 0.16)"
       },
       backgroundImage: {
         "soft-grid":
-          "linear-gradient(rgba(16, 24, 40, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 24, 40, 0.07) 1px, transparent 1px)"
+          "linear-gradient(rgba(100, 116, 139, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(100, 116, 139, 0.12) 1px, transparent 1px)"
       }
     }
   },
