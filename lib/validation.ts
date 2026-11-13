@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { projectCategories } from "@/lib/project-categories";
 
 // Shared schemas keep client-submitted form data consistent before persistence.
 export const contactSchema = z.object({
@@ -15,6 +16,7 @@ export const loginSchema = z.object({
 export const projectSchema = z.object({
   id: z.string().optional(),
   title: z.string().trim().min(2),
+  category: z.enum(projectCategories),
   description: z.string().trim().min(10),
   stack: z.string().trim().min(2),
   icon: z.string().trim().min(2),

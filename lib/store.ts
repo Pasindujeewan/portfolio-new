@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { seedData } from "@/data/seed";
+import { normalizeProjectCategory } from "@/lib/project-categories";
 import { createSupabaseAdminClient, hasSupabaseConfig } from "@/lib/supabase";
 import type { BlogPost, ContactMessage, EducationItem, PortfolioData, Project } from "@/types/content";
 
@@ -8,8 +9,9 @@ const dataDir = path.join(process.cwd(), "data");
 const dataFile = path.join(dataDir, "db.json");
 
 // Supabase uses snake_case for a few columns; app types stay camelCase.
-type SupabaseProject = Omit<Project, "stack"> & {
+type SupabaseProject = Omit<Project, "stack" | "category"> & {
   stack: string[];
+  category?: string | null;
   created_at?: string;
 };
 
@@ -39,7 +41,14 @@ async function ensureStore() {
 async function readFileData(): Promise<PortfolioData> {
   await ensureStore();
   const raw = await fs.readFile(dataFile, "utf8");
-  return JSON.parse(raw) as PortfolioData;
+  const data = JSON.parse(raw) as PortfolioData;
+  return {
+    ...data,
+    projects: data.projects.map((project) => ({
+      ...project,
+      category: normalizeProjectCategory(project.category),
+    })),
+  };
 }
 
 async function writeFileData(data: PortfolioData) {
@@ -59,6 +68,19 @@ function toBlog(row: SupabaseBlog): BlogPost {
     category: row.category,
     readTime: row.read_time,
     date: row.date
+  };
+}
+
+function toProject(row: SupabaseProject): Project {
+  return {
+    id: row.id,
+    title: row.title,
+    category: normalizeProjectCategory(row.category),
+    description: row.description,
+    stack: row.stack,
+    icon: row.icon,
+    github: row.github,
+    demo: row.demo,
   };
 }
 
@@ -90,7 +112,7 @@ export async function readData(): Promise<PortfolioData> {
   assertSupabaseError(messagesResult.error);
 
   return {
-    projects: (projectsResult.data ?? []) as SupabaseProject[],
+    projects: ((projectsResult.data ?? []) as SupabaseProject[]).map(toProject),
     blogs: ((blogsResult.data ?? []) as SupabaseBlog[]).map(toBlog),
     education: (educationResult.data ?? []) as SupabaseEducation[],
     messages: ((messagesResult.data ?? []) as SupabaseMessage[]).map(toMessage)

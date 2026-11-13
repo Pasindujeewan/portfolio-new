@@ -85,6 +85,7 @@ export async function saveProject(formData: FormData) {
   const parsed = projectSchema.parse({
     id: field(formData, "id"),
     title: field(formData, "title"),
+    category: field(formData, "category"),
     description: field(formData, "description"),
     stack: field(formData, "stack"),
     icon: field(formData, "icon"),

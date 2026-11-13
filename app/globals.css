@@ -5,6 +5,7 @@
 :root {
   color-scheme: light;
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 .dark {
@@ -13,32 +14,63 @@
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
   background:
-    radial-gradient(circle at 12% 10%, rgba(0, 184, 169, 0.16), transparent 30%),
-    radial-gradient(circle at 88% 8%, rgba(255, 107, 107, 0.14), transparent 26%),
+    radial-gradient(circle at 12% 10%, rgba(15, 23, 42, 0.035), transparent 30%),
+    radial-gradient(circle at 88% 8%, rgba(15, 23, 42, 0.025), transparent 26%),
     #f8fafc;
   color: #101828;
+  font-family: var(--font-space-grotesk), sans-serif;
 }
 
 .dark body {
   background:
-    radial-gradient(circle at 12% 10%, rgba(0, 184, 169, 0.18), transparent 30%),
-    radial-gradient(circle at 88% 8%, rgba(255, 107, 107, 0.14), transparent 26%),
-    #0b1020;
+    radial-gradient(ellipse at 14% 8%, rgba(255, 255, 255, 0.035), transparent 34%),
+    radial-gradient(ellipse at 88% 22%, rgba(255, 255, 255, 0.02), transparent 30%),
+    #09090b;
   color: #f8fafc;
 }
 
 ::selection {
-  background: rgba(0, 184, 169, 0.26);
+  background: rgba(59, 130, 246, 0.22);
 }
 
 .glass {
   border: 1px solid rgba(255, 255, 255, 0.44);
   background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(18px);
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
 }
 
 .dark .glass {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(15, 23, 42, 0.7);
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(17, 18, 22, 0.82);
+}
+
+.font-mono {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

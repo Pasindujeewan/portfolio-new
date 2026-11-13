@@ -88,7 +88,7 @@ export function SaveButton({ label = "Save" }: { label?: string }) {
   return (
     <button
       disabled={pending}
-      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-aqua disabled:cursor-wait disabled:opacity-70 dark:bg-white dark:text-slate-950 sm:w-auto"
+      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-800 disabled:cursor-wait disabled:opacity-70 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200 sm:w-auto"
     >
       {pending ? <LoaderCircle size={17} className="animate-spin" /> : null}
       {pending ? "Saving..." : label}

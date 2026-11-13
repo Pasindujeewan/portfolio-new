@@ -12,10 +12,10 @@ function BlogCard({ blog }: { blog: BlogPost }) {
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
-      className="glass group flex min-h-72 w-[18rem] shrink-0 flex-col rounded-3xl p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-glow sm:w-[21rem]"
+      className="glass group flex min-h-72 w-[18rem] shrink-0 flex-col rounded-3xl p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:border-aqua/30 hover:shadow-glow sm:w-[21rem]"
     >
       <div className="mb-5 flex items-center justify-between">
-        <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-coral/15 text-coral">
+        <span className="inline-flex h-11 w-11 items-center justify-center text-slate-700 dark:text-slate-200">
           <BookOpen size={21} />
         </span>
         <ArrowUpRight

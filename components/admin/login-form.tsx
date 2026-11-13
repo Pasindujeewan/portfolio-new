@@ -24,7 +24,7 @@ export function LoginForm() {
         Password
         <input name="password" type="password" minLength={8} required className="mt-2 w-full rounded-2xl border border-slate-200 bg-white/85 px-4 py-3 text-sm outline-none focus:border-aqua focus:ring-4 focus:ring-aqua/15 dark:border-white/10 dark:bg-slate-950/50 dark:text-white" />
       </label>
-      <button disabled={pending} className="mt-6 w-full rounded-full bg-slate-950 px-5 py-3 font-bold text-white transition hover:bg-aqua disabled:cursor-wait disabled:opacity-70 dark:bg-white dark:text-slate-950">
+      <button disabled={pending} className="mt-6 w-full rounded-full bg-slate-950 px-5 py-3 font-bold text-white transition hover:bg-slate-800 disabled:cursor-wait disabled:opacity-70 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">
         {pending ? "Checking..." : "Login"}
       </button>
       {state.message ? <p className="mt-4 text-sm font-semibold text-coral">{state.message}</p> : null}
