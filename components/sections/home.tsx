@@ -1,12 +1,4 @@
-import {
-  ArrowRight,
-  Braces,
-  Code2,
-  Github,
-  Linkedin,
-  Mail,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Sparkles } from "lucide-react";
 import Image from "next/image";
 import profileImage from "@/asseats/Pasindu_Image.png";
 import { MotionDiv, MotionSection } from "@/components/motion";
@@ -45,11 +37,7 @@ export function HomeSection() {
         >
           <div
             aria-hidden="true"
-            className="absolute inset-3 rotate-6 rounded-[2.5rem] border border-slate-400/30"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute -inset-5 rounded-[3rem] bg-slate-400/5 blur-2xl"
+            className="absolute -inset-5 rounded-[3rem] bg-aqua/[0.08] blur-3xl"
           />
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#1c1d22] via-[#111216] to-[#09090b] shadow-glow transition duration-500 group-hover:-translate-y-1">
             <div
@@ -64,18 +52,6 @@ export function HomeSection() {
               sizes="(max-width: 640px) 304px, (max-width: 1024px) 384px, 400px"
               className="object-contain object-bottom"
             />
-          </div>
-          <div className="absolute -left-3 top-12 inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white/90 px-3 py-2.5 text-slate-800 shadow-xl backdrop-blur dark:border-white/10 dark:bg-[#111216]/95 dark:text-white sm:-left-6">
-            <span className="flex items-center justify-center text-aqua">
-              <Code2 size={19} />
-            </span>
-            <span className="pr-1 text-xs font-bold sm:text-sm">Full-stack developer</span>
-          </div>
-          <div className="absolute -bottom-4 -right-2 inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white/90 px-3 py-2.5 text-slate-800 shadow-xl backdrop-blur dark:border-white/10 dark:bg-[#111216]/95 dark:text-white sm:-right-5">
-            <span className="flex items-center justify-center text-aqua">
-              <Braces size={19} />
-            </span>
-            <span className="pr-1 text-xs font-bold sm:text-sm">Beyond the Code</span>
           </div>
         </MotionDiv>
         <div className="order-1 w-full text-center lg:order-1 lg:text-left">
@@ -95,13 +71,12 @@ export function HomeSection() {
             transition={{ delay: 0.1 }}
           >
             <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-tight tracking-[-0.055em] text-slate-950 dark:text-white sm:text-5xl md:text-7xl lg:mx-0">
-              Pasindu Jeewan
+              Pasindu Jeewana
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-400 md:text-lg lg:mx-0">
-              I design and build modern web, mobile, cloud, and enterprise
-              applications with a strong focus on intuitive user experiences,
-              clean architecture, and reliable engineering
-            </p>
+            <blockquote className="mx-auto mt-6 max-w-3xl text-[1.75rem] font-semibold leading-[1.2] tracking-[-0.04em] text-slate-800 dark:text-slate-100 sm:text-4xl md:mt-7 md:text-5xl lg:mx-0">
+              It&apos;s not about being advanced, it&apos;s about being solid at
+              the <span className="text-aqua">basics.</span>
+            </blockquote>
           </MotionDiv>
           <MotionDiv
             className="mt-6 flex flex-wrap justify-center gap-2 lg:justify-start"
@@ -120,20 +95,20 @@ export function HomeSection() {
             ))}
           </MotionDiv>
           <MotionDiv
-            className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
+            className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
             <a
               href="#projects"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3 font-semibold text-white shadow-lg shadow-slate-950/15 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:shadow-black/10 dark:hover:bg-slate-200"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-slate-950 px-6 py-3 font-semibold text-white shadow-lg shadow-slate-950/15 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:shadow-black/10 dark:hover:bg-slate-200"
             >
               View Projects <ArrowRight size={18} />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/70 px-6 py-3 font-semibold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-aqua hover:text-aqua dark:border-white/15 dark:bg-white/[0.04] dark:text-white"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-300 bg-white/70 px-6 py-3 font-semibold text-slate-800 transition duration-200 hover:-translate-y-0.5 hover:border-aqua hover:text-aqua dark:border-white/15 dark:bg-white/[0.04] dark:text-white"
             >
               Contact Me
             </a>
